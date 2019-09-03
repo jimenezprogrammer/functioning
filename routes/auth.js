@@ -1,5 +1,5 @@
 const express = require('express');
-const app = require('../app.js')
+const app = require('../server.js')
 const router = express.Router();
 const passport = require('passport');
 //const passportFacebook = require('../auth/facebook');
