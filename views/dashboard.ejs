@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Earthquake project</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" >
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+  <link rel="stylesheet" href="/css/L.Control.MousePosition.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <!----------------------------------------------head)sidebar template------------------------------------------------------------->
+
+</head>
+
+<body>
+  <nav class="navbar navbar-m2p sidebar" role="navigation">
+    <div class="container-fluid">
+      <!-----------------------------------(head)sidebar template----------------------------------------------------------------------->
+  <!-------------------------------------------(toggle for better movle display)sidebar template----------------------------------->
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+      <b>Map Options</b>
+    </a>
+  </div>
+  <!---(toggle for better movle display)sidebar template------------------------------------------------>
+  <!---(collect the nav links)sidebar template--------------------------------------------->
+  <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <!-- Dashboard -->
+      <li class="separator">Map Filters</li>
+      <li class="">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="pull-right hidden-xs showopacity glyphicon material-icons">av_timer</span> Alert Level <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu forAnimate" role="menu">
+          <li><a href="#"><input type="checkbox" id="myCheck"><i class="material-icons"></i> All of them</a></li>
+          <li><a href="#"><input type="checkbox" id="greenBox"><i class="material-icons"></i> green</a></li>
+          <li><a href="#"><input type="checkbox" id="yellowBox"><i class="material-icons"></i> yellow</a></li>
+          <li><a href="#"><input type="checkbox" id="orangeBox"><i class="material-icons"></i> orange</a></li>
+          <li><a href="#"><input type="checkbox" id="redBox"><i class="material-icons"></i> Red</a></li>
+        </ul>
+      </li>
+      <!-- Banner -->
+      <li class="">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon pull-right hidden-xs showopacity glyphicon material-icons">burst_mode</span>
+          Date <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu forAnimate" role="menu">
+          <li><a href="#"><input type="radio" name="gender" id="thirtyDays"><i class="material-icons"></i> last 30 days</a></li>
+          <li><a href="#"><input type="radio" name="gender" id="ninetyDays"><i class="material-icons"></i> last 90 days</a></li>
+          <li><a href="#"><input type="radio" name="gender" id="twelveMonths"><i class="material-icons"></i> last 12 months </a></li>
+        </ul>
+      </li>
+      <li class="separator">types of maps</li>
+      <!-- Page -->
+      <li class="">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon pull-right hidden-xs showopacity glyphicon material-icons">description</span>
+          Heat map <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu forAnimate" role="menu">
+          <li><a href="#" id="addHeat"><i class="material-icons">add</i> Add Map</a></li>
+          <li><a href="#" id="removeHeat"><i class="material-icons">delete</i> Remove Map</a></li>
+        </ul>
+      </li>
+      <!-- Blog -->
+      <li class="">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon pull-right hidden-xs showopacity glyphicon material-icons">chat_bubble_outline</span>
+          Affeted Areas<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu forAnimate" role="menu">
+          <li><a href="#" id="affectedArea"><i class="material-icons">add</i> Add Map </a></li>
+          <li><a href="#" id="removeEffectedArea"><i class="material-icons">delete</i> remove map</a></li>
+        </ul>
+      </li>
+      <!-- Tags -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon material-icons">label</span>
+          Live twitter feed <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu forAnimate" role="menu">
+          <li><a href="#"> <i class="material-icons">add</i> Add</a></li>
+          <li><a href="#"> <i class="material-icons">sort</i> List</a></li>
+        </ul>
+      </li>
+      <li class="separator">System</li>
+      <!-- Users -->
+      <li class="#">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon pull-right hidden-xs showopacity glyphicon material-icons">group</span>
+          Users <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu forAnimate" role="menu">
+          <li><a href="#"><i class="material-icons">add</i> Add</a></li>
+          <li><a href="#"><i class="material-icons">sort</i> List</a></li>
+        </ul>
+      </li>
+      <!-- Exit -->
+      <li>
+        <a href="/users/logout">
+          <span class="menu-icon pull-right hidden-xs showopacity glyphicon material-icons">exit_to_app</span> Exit
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+  </nav>
+
+  <!-- - (collect the nav links)sidebar template------------------------------------->
+
+
+  <div id="mymap"> </div>
+
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+  <script type="text/javascript" src="/js/leaflet-heat.js"></script>
+  <script src="/js/L.Control.MousePosition.js" charsewt="utf-8"></script>
+  <script src="/js/main.js" charsewt="utf-8"></script>
+</body>
+
+</html>
