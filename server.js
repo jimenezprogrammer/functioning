@@ -4,15 +4,17 @@ const expressLayout = require('express-layout');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const app = express();
 const session = require('express-session');
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const User = require('./models/user');
+
+
+const app = express();
 
 //set DB connection
 var db = require('./config/keys').MongoURI;
@@ -104,6 +106,9 @@ passport.deserializeUser(function(userId, done) {
 });
 
 
+/*
 app.listen(port, function() {
   console.log('listening on port ' + port);
-});
+}); */
+
+module.exports = app;

@@ -6,6 +6,7 @@ router.get('/dashboard', function(req, res){
 });
 
 router.get('/', function(req, res) {
+  console.log("GET for /")
 res.render('index');
 });
 
